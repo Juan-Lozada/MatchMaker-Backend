@@ -5,27 +5,27 @@ const {
   tokenVerification,
 } = require("../middlewares/middlewares");
 const indexController = require("../controllers/indexController");
-const router = express.Router();
+const app = express()
 
-router.post("/registro", checkCredentialsExists, indexController.registroUsuario);
+app.post("/registro", checkCredentialsExists, indexController.registroUsuario);
 
-router.post("/login", indexController.iniciarSesion);
+app.post("/login", indexController.iniciarSesion);
 
-router.put(
+app.put(
   "/usuario/:id",
   tokenVerification,
   checkCredentialsExists,
   indexController.editarUsuario
 );
-router.post("/registro/recinto", indexController.registroRecinto);
-router.post("/reserva", indexController.registroReserva)
-router.post("/registro/cancha", indexController.registroCancha)
-router.get("/recintos/tenant", indexController.getRecintosTenant);
-router.get("/recintos/usuario", indexController.getRecintosUser);
-router.put("/recinto/:id", indexController.editarRecinto);
-router.put("/cancha/:id", indexController.editarCancha)
+app.post("/registro/recinto", indexController.registroRecinto);
+app.post("/reserva", indexController.registroReserva)
+app.post("/registro/cancha", indexController.registroCancha)
+app.get("/recintos/tenant", indexController.getRecintosTenant);
+app.get("/recintos/usuario", indexController.getRecintosUser);
+app.put("/recinto/:id", indexController.editarRecinto);
+app.put("/cancha/:id", indexController.editarCancha)
 
 
 
 
-module.exports = router;
+module.exports = app;

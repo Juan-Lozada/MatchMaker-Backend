@@ -1,11 +1,14 @@
 const request = require("supertest");
-const server = require("../index");
+const app = require("../../src/indexRoute/indexRoute");
 
 describe("Validaciones a rutas definidas", () => {
   it("Validar Inicio Sesión ", async () => {
-    const resultado = await request(server).get("/login").send();
-    expect(resultado.statusCode).toBe(200);
-  });
+    const resultado = await request(app).post("/login").send({
+      email: "estoesunaprueba@example.com",
+      password: "Contraseña123",
+    });    
+    expect(resultado.statusCode).toBe(201);
+  },5000);
 
   it("Validar registro de usuario ", async () => {
     const usuario = {
@@ -20,10 +23,10 @@ describe("Validaciones a rutas definidas", () => {
       tipo_user: 0,
       password: "123123",
     };
-    const resultado = await request(server).post("/registro").send(usuario);
+    const resultado = await request(app).post("/registro").send(usuario);
     expect(resultado.statusCode).toBe(201);
     expect(resultado.body).toContainEqual(usuario);
-  });
+  },5000);
 
   it("Validar actualizar usuario", async () => {
     const usuario = {
@@ -39,11 +42,11 @@ describe("Validaciones a rutas definidas", () => {
       password: "123123",
     };
     const id_usuario = 5;
-    const resultado = await request(server)
+    const resultado = await request(app)
       .put(`/usuario/${id_usuario}`)
       .send(usuario);
-    expect(resultado.statusCode).toBe(400);
-  });
+    expect(resultado.statusCode).toBe(403);
+  },5000);
 
   it("Validar registro del recinto ", async () => {
     const recinto = {
@@ -56,12 +59,12 @@ describe("Validaciones a rutas definidas", () => {
       comuna: "Villa Alemana",
       estado: 1,
     };
-    const resultado = await request(server)
+    const resultado = await request(app)
       .post("/registro/recinto")
       .send(recinto);
     expect(resultado.statusCode).toBe(201);
     expect(resultado.body).toContainEqual(recinto);
-  });
+  },5000);
 
   it("Validar actualizar recinto", async () => {
     const recinto = {
@@ -75,9 +78,9 @@ describe("Validaciones a rutas definidas", () => {
       estado: 1,
     };
     const id_recinto = 5;
-    const resultado = await request(server)
+    const resultado = await request(app)
       .put(`/recinto/${id_recinto}`)
       .send(recinto);
-    expect(resultado.statusCode).toBe(400);
-  });
+    expect(resultado.statusCode).toBe(403);
+  },5000);
 });
