@@ -18,7 +18,7 @@ const indexController = {
     try {
       const { email, password } = req.body;
       const token = jwt.sign({ email }, "az_AZ", { expiresIn: "300" });
-      const res = await verificarUsuario(email, password);
+      await verificarUsuario(email, password);
       res.send(token);
     } catch (e) {
       res.status(404).send(e.message);
@@ -28,7 +28,7 @@ const indexController = {
   registroUsuario: async (req, res) => {
     try {
       const usuario = req.body;
-      const res = await registrarUsuario(usuario);
+      await registrarUsuario(usuario);
       res.status(201).send("Usuario creado con éxito");
     } catch (error) {
       res.status(500).send(error);
@@ -39,7 +39,7 @@ const indexController = {
     try {
       const { id } = req.params;
       const usuario = req.body;
-      const res = await actualizarUsuario(usuario, id);
+      await actualizarUsuario(usuario, id);
       res.status(201).send("Datos de Usuario actualizados con éxito");
     } catch (error) {
       res.status(500).send(error);
@@ -49,7 +49,7 @@ const indexController = {
   registroRecinto: async (req, res) => {
     try {
       const recinto = req.body;
-      const res = await registrarRecinto(recinto);
+      await registrarRecinto(recinto);
       res.status(201).send("Recinto creado con éxito");
     } catch (error) {
       res.status(500).send(error);
@@ -60,7 +60,7 @@ const indexController = {
     try {
       const { id } = req.params;
       const recinto = req.body;
-      const res = await actualizarRecinto(recinto, id);
+      await actualizarRecinto(recinto, id);
       res.status(201).send("Datos del recinto actualizados con éxito");
     } catch (error) {
       res.status(500).send(error);
@@ -71,7 +71,7 @@ const indexController = {
     try {
       const usuario_id = req.body;
       const recintos = await obtenerRecintosTenant(usuario_id);
-      recintos.status(200).send(recintos);
+      res.status(200).send(recintos);
     } catch (error) {
       console.log(error);
       res.status(500).send(error);
@@ -92,7 +92,7 @@ const indexController = {
   registroCancha: async (req, res) => {
     try {
       const cancha = req.body;
-      const res = await registrarCancha(cancha);
+      await registrarCancha(cancha);
       res.status(201).send("Cancha creado con éxito");
     } catch (error) {
       res.status(500).send(error);
@@ -103,7 +103,7 @@ const indexController = {
     try {
       const { id } = req.params;
       const cancha = req.body;
-      const res = await actualizarCancha(cancha, id);
+      await actualizarCancha(cancha, id);
       res.status(201).send("Datos de la cancha actualizados con éxito");
     } catch (error) {
       res.status(500).send(error);
@@ -113,7 +113,7 @@ const indexController = {
   registroReserva: async (req, res) => {
     try {
       const reserva = req.body;
-      const res = await registrarReserva(reserva);
+      await registrarReserva(reserva);
       res.status(201).send("Reserva creada con éxito");
     } catch (error) {
       res.status(500).send(error);
