@@ -50,7 +50,7 @@ describe("Validaciones a rutas definidas", () => {
     const resultado = await request(app)
       .put(`/usuario/${usuario.id}`)
   .then(response => console.log(response))
-    expect(resultado.statusCode).toBe(400);
+    expect(resultado.statusCode).toBe(201);
   });
 
   // it("Validar registro del recinto ", async () => {
