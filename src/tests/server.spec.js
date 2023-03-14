@@ -53,23 +53,24 @@ describe("Validaciones a rutas definidas", () => {
     expect(resultado.statusCode).toBe(201);
   });
 
-  // it("Validar registro del recinto ", async () => {
-  //   const recinto = {
-  //     id: 5,
-  //     id_usuario: 6,
-  //     nombre: "Recinto de prueba",
-  //     telefono: "123456789",
-  //     email: "recinto.prueba@test.cl",
-  //     direccion: "San Enrique 15",
-  //     comuna: "Villa Alemana",
-  //     estado: 1,
-  //   };
-  //   const resultado = await request(app)
-  //     .post("/registro/recinto")
-  //     .send(recinto);
-  //   expect(resultado.statusCode).toBe(201);
-  //   expect(resultado.body).toContainEqual(recinto);
-  // });
+  it("Validar registro del recinto ", async () => {
+    const recinto = {
+      id: 1,
+      id_usuario: 8,
+      nombre: "Recinto de prueba",
+      telefono: "123456789",
+      email: "recinto.prueba@test.cl",
+      direccion: "San Enrique 15",
+      comuna: "Villa Alemana",
+      estado: 1,
+    };
+    const resultado = await request(app)
+      .post("/registro/recinto")
+      .send(recinto)
+      .then(response => console.log(response))
+    expect(resultado.statusCode).toBe(201);
+    expect(resultado.body).toContainEqual(recinto);
+  });
 
   // it("Validar actualizar recinto", async () => {
   //   const recinto = {
