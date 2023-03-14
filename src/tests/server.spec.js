@@ -49,30 +49,6 @@ describe("Validaciones a rutas definidas", () => {
     };
     const resultado = await request(app)
       .put(`/usuario/${usuario.id}`)
-<<<<<<< HEAD
-  .then(response => console.log(response))
-    expect(resultado.statusCode).toBe(400);
-  });
-
-  // it("Validar registro del recinto ", async () => {
-  //   const recinto = {
-  //     id: 5,
-  //     id_usuario: 6,
-  //     nombre: "Recinto de prueba",
-  //     telefono: "123456789",
-  //     email: "recinto.prueba@test.cl",
-  //     direccion: "San Enrique 15",
-  //     comuna: "Villa Alemana",
-  //     estado: 1,
-  //   };
-  //   const resultado = await request(app)
-  //     .post("/registro/recinto")
-  //     .send(recinto);
-  //   expect(resultado.statusCode).toBe(201);
-  //   expect(resultado.body).toContainEqual(recinto);
-  // });
-
-=======
       .send(usuario)
     expect(resultado.statusCode).toBe(201);
   });
@@ -95,7 +71,6 @@ describe("Validaciones a rutas definidas", () => {
   //   expect(resultado.body).toContainEqual(recinto);
   // });
 
->>>>>>> 5b3e592ca6d889b02caefe67d8cd78443d1b427f
   // it("Validar actualizar recinto", async () => {
   //   const recinto = {
   //     id: 5,
