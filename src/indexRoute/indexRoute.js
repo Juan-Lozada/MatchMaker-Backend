@@ -1,31 +1,23 @@
-const express = require('express')
-const cors = require('cors')
+const express = require("express");
+const cors = require("cors");
+const router = express.Router();
 const {
   checkCredentialsExists,
   tokenVerification,
 } = require("../middlewares/middlewares");
 const indexController = require("../controllers/indexController");
-const app = express()
 
-app.post("/registro", checkCredentialsExists, indexController.registroUsuario);
+router.post("/registro", indexController.registroUsuario);
 
-app.post("/login", indexController.iniciarSesion);
+router.post("/login", indexController.iniciarSesion);
 
-app.put(
-  "/usuario/:id",
-  tokenVerification,
-  checkCredentialsExists,
-  indexController.editarUsuario
-);
-app.post("/registro/recinto", indexController.registroRecinto);
-app.post("/reserva", indexController.registroReserva)
-app.post("/registro/cancha", indexController.registroCancha)
-app.get("/recintos/tenant", indexController.getRecintosTenant);
-app.get("/recintos/usuario", indexController.getRecintosUser);
-app.put("/recinto/:id", indexController.editarRecinto);
-app.put("/cancha/:id", indexController.editarCancha)
+router.put("/usuario/:id", indexController.editarUsuario);
+router.post("/registro/recinto", indexController.registroRecinto);
+router.post("/reserva", indexController.registroReserva);
+router.post("/registro/cancha", indexController.registroCancha);
+router.get("/recintos/tenant", indexController.getRecintosTenant);
+router.get("/recintos/usuario", indexController.getRecintosUser);
+router.put("/recinto/:id", indexController.editarRecinto);
+router.put("/cancha/:id", indexController.editarCancha);
 
-
-
-
-module.exports = app;
+module.exports = router;

@@ -82,7 +82,7 @@ const actualizarUsuario = async (usuario, id) => {
     id,
   ];
   const consulta =
-    "UPDATE usuarios SET nombre = $1, apellido_paterno = $2, rut = $3, email = $4, telefono = $5, direccion = $6, comuna = $7, region = $8 password = $9 WHERE id = $10";
+    "UPDATE usuarios SET nombre = $1, apellido_paterno = $2, rut = $3, email = $4, telefono = $5, direccion = $6, comuna = $7, region = $8, password = $9 WHERE id = $10";
   await pool.query(consulta, values);
 };
 
