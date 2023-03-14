@@ -20,4 +20,8 @@ router.get("/recintos/usuario", indexController.getRecintosUser);
 router.put("/recinto/:id", indexController.editarRecinto);
 router.put("/cancha/:id", indexController.editarCancha);
 
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 32a62bd6a0b36249d436af2af1817e34ffb90933
