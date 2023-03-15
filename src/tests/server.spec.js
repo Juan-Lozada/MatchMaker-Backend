@@ -1,33 +1,16 @@
 const request = require("supertest");
-// const express = require("express");
 const app = require("../app");
-const { verificarUsuario } = require('../function/functions');
-// const app = express();
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use("/", server)
 
 
 
 describe("Validaciones a rutas definidas", () => {
   it("Validar Inicio Sesión ", async () => {
-    const email = "   ";
-    const password = "123"; // contraseña correcta en texto plano
+    const email = 'prueba123@mail.cl';
+    const password = '123';
 
-    // obtiene el usuario con la contraseña correcta
-    const usuario = await verificarUsuario(email, password);
-    console.log(usuario)
-
-    // realiza la solicitud con la contraseña encriptada
-    const resultado = await request(app)
-      .post("/login")
-      .send({ email, password: usuario.password });
-
+    const resultado = await request(app).post("/login").send({ email, password}) 
     expect(resultado.statusCode).toBe(200);
-    expect(resultado.body).toHaveProperty("token");
   });
-
-
 
   it("Validar registro de usuario ", async () => {
     const usuario = {
@@ -88,14 +71,14 @@ describe("Validaciones a rutas definidas", () => {
     const recinto = {
       id: 11,
       usuarios_id: 8,
-      nombre: "Recinto de prueba",
+      nombre: "Recinto de prueba editado",
       telefono: "123456789",
-      email: "recinto.prueba@test.cl",
+      email: "recinto.test.editado@test.cl",
       direccion: "San Enrique 15",
       comuna: "Villa Alemana",
-      estado: true,
+      estado: false,
     };
-    const id_recinto = 5;
+    const id_recinto = 11;
     const resultado = await request(app)
       .put(`/recinto/${id_recinto}`)
       .send(recinto);

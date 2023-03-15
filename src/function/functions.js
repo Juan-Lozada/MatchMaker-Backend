@@ -14,23 +14,15 @@ const verificarUsuario = async (email, password) => {
   const values = [email];
   const consulta = "SELECT * FROM usuarios WHERE email = $1";
   const { rows, rowCount } = await pool.query(consulta, values);
-
-  if (!rowCount) {
+  if (rowCount === 0) {
     throw { code: 401, message: "Email o contraseña incorrecta" };
   }
 
-  const usuario = rows[0];
-  const passwordEsCorrecta = await bcrypt.compare(password, usuario.password);
-  console.log(usuario, passwordEsCorrecta)
+  const passwordEncriptada = rows[0].password;
 
-  if (!passwordEsCorrecta) {
+  const passwordEsCorrecta = bcrypt.compareSync(password, passwordEncriptada);
+  if (!passwordEsCorrecta || !rowCount)
     throw { code: 401, message: "Email o contraseña incorrecta" };
-  }
-
-  return {
-    ...usuario,
-    password: usuario.password,
-  };
 };
 
 
