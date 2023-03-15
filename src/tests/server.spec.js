@@ -10,12 +10,11 @@ const app = require("../app");
 
 describe("Validaciones a rutas definidas", () => {
   it("Validar Inicio Sesión ", async () => {
-const email = 'usuario.test@prueba.cl';
-const password = '$2a$10$lIHTV3/htlBP15CKyttzhuz.CIj2lfmsWPcAKN0xLpun5waIOFjpi';
+    const email = 'prueba123@mail.cl';
+    const password = '123';
 
-
-    const resultado = await request(app).post("/login").send(email, password) 
-    .then(response => console.log(response))
+    const resultado = await request(app).post("/login").send({ email, password}) 
+    // .then(response => console.log(response))
     expect(resultado.statusCode).toBe(200);
   });
 
