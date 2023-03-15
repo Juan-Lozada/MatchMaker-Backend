@@ -13,15 +13,26 @@ const pool = new Pool({
 const verificarUsuario = async (email, password) => {
   const values = [email];
   const consulta = "SELECT * FROM usuarios WHERE email = $1";
-  const {
-    rows: [usuario],
-    rowCount,
-  } = await pool.query(consulta, values);
-  const { password: passwordEncriptada } = usuario;
-  const passwordEsCorrecta = bcrypt.compareSync(password, passwordEncriptada);
-  if (!passwordEsCorrecta || !rowCount)
+  const { rows, rowCount } = await pool.query(consulta, values);
+
+  if (!rowCount) {
     throw { code: 401, message: "Email o contraseña incorrecta" };
+  }
+
+  const usuario = rows[0];
+  const passwordEsCorrecta = await bcrypt.compare(password, usuario.password);
+  console.log(usuario, passwordEsCorrecta)
+
+  if (!passwordEsCorrecta) {
+    throw { code: 401, message: "Email o contraseña incorrecta" };
+  }
+
+  return {
+    ...usuario,
+    password: usuario.password,
+  };
 };
+
 
 const registrarUsuario = async (usuario) => {
   let {
@@ -160,13 +171,13 @@ const actualizarCancha = async (cancha, id) => {
 };
 
 const registrarReserva = async (cancha) => {
-    let { cancha_id, recinto_id, fecha_inicio, fecha_termino, estado } = reserva;
-    const values = [cancha_id, recinto_id, fecha_inicio, fecha_termino, estado];
-    const consulta =
-      "INSERT INTO reserva values (DEFAULT, $1, $2, $3, $4, $5)";
-    await pool.query(consulta, values);
-  };
-  
+  let { cancha_id, recinto_id, fecha_inicio, fecha_termino, estado } = reserva;
+  const values = [cancha_id, recinto_id, fecha_inicio, fecha_termino, estado];
+  const consulta =
+    "INSERT INTO reserva values (DEFAULT, $1, $2, $3, $4, $5)";
+  await pool.query(consulta, values);
+};
+
 
 module.exports = {
   verificarUsuario,
