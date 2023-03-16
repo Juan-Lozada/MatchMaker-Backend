@@ -1,21 +1,14 @@
 const request = require("supertest");
-// const express = require("express");
 const app = require("../app");
-// const app = express();
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use("/", server)
 
 
 
 describe("Validaciones a rutas definidas", () => {
   it("Validar Inicio Sesión ", async () => {
-const email = 'usuario.test@prueba.cl';
-const password = '$2a$10$lIHTV3/htlBP15CKyttzhuz.CIj2lfmsWPcAKN0xLpun5waIOFjpi';
+    const email = 'prueba123@mail.cl';
+    const password = '123';
 
-
-    const resultado = await request(app).post("/login").send(email, password) 
-    .then(response => console.log(response))
+    const resultado = await request(app).post("/login").send({ email, password}) 
     expect(resultado.statusCode).toBe(200);
   });
 
@@ -35,7 +28,6 @@ const password = '$2a$10$lIHTV3/htlBP15CKyttzhuz.CIj2lfmsWPcAKN0xLpun5waIOFjpi';
     };
     const resultado = await request(app).post("/registro").send(usuario)
     expect(resultado.statusCode).toBe(201);
-    // expect(resultado.body).toContainEqual(usuario);
   });
 
   it("Validar actualizar usuario", async () => {
@@ -73,7 +65,6 @@ const password = '$2a$10$lIHTV3/htlBP15CKyttzhuz.CIj2lfmsWPcAKN0xLpun5waIOFjpi';
       .post("/registro/recinto")
       .send(recinto)
     expect(resultado.statusCode).toBe(201);
-    // expect(resultado.body).toContainEqual(recinto);
   });
 
   it("Validar actualizar recinto", async () => {
