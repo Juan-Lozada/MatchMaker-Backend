@@ -27,6 +27,16 @@ const indexController = {
     }
   },
 
+  getUsuarios: async (req, res) => {
+    try {
+      const usuarios = await obtenerUsuarios(usuarios);
+      res.status(200).send(usuarios);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  },
+
   registroUsuario: async (req, res) => {
     try {
       const usuario = req.body;
