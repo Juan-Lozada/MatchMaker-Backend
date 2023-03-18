@@ -6,7 +6,7 @@ const host = process.env.PGHOST || process.env.DB_HOST
 const user = process.env.PGUSER || process.env.DB_USER
 const database = process.env.PGDATABASE || process.env.DB_NAME
 const password = process.env.PGPASSWORD || process.env.DB_PASSWORD
-const name = process.env.DB_NAME
+const name = process.env.PGDATABASE || process.env.DB_NAME
 
 const pool = new Pool({
   host: host,
