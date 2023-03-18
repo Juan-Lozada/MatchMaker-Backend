@@ -11,6 +11,9 @@ router.post("/registro", indexController.registroUsuario);
 
 router.post("/login", indexController.iniciarSesion);
 
+router.get("/", (req, res) => {
+  res.send('Welcome to my Server')
+})
 router.put("/usuario/:id", indexController.editarUsuario);
 router.post("/registro/recinto", indexController.registroRecinto);
 router.post("/reserva", indexController.registroReserva);
