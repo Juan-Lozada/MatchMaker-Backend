@@ -145,6 +145,13 @@ const obtenerRecintoUser = async (comuna) => {
   if (!rowCount) throw { code: 404, message: "No se encontraron recintos" };
 };
 
+const getCanchas = async (comuna) => {
+  const consulta = "SELECT * FROM canchas";
+  const values = [comuna];
+  const { rowCount } = await pool.query(consulta, values);
+  if (!rowCount) throw { code: 404, message: "No se encontraron canchas" };
+};
+
 const registrarCancha = async (cancha) => {
   let { usuarios_id, recinto_id, deporte, jugadores, fecha, estado } = cancha;
   const values = [usuarios_id, recinto_id, deporte, jugadores, fecha, estado];
@@ -186,6 +193,7 @@ module.exports = {
   actualizarRecinto,
   obtenerRecintosTenant,
   obtenerRecintoUser,
+  getCanchas,
   registrarCancha,
   actualizarCancha,
   registrarReserva
