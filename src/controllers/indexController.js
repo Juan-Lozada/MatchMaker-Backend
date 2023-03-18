@@ -8,6 +8,7 @@ const {
   actualizarRecinto,
   obtenerRecintosTenant,
   obtenerRecintoUser,
+  obtenerCanchas,
   registrarCancha,
   actualizarCancha,
   registrarReserva,
@@ -93,8 +94,8 @@ const indexController = {
 
   getCanchas: async (req, res) => {
     try {
-      const recintos = await obtenerCanchas();
-      res.status(200).send(recintos);
+      const canchas = await obtenerCanchas();
+      res.status(200).send(canchas);
     } catch (error) {
       console.log(error);
       res.status(500).send(error);
