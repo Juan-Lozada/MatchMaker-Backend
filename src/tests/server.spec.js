@@ -5,8 +5,8 @@ const app = require("../app");
 
 describe("Validaciones a rutas definidas", () => {
   it("Validar Inicio Sesión ", async () => {
-    const email = 'prueba123@mail.cl';
-    const password = '123';
+    const email = 'usuario.prueba@test.cl';
+    const password = '123123';
 
     const resultado = await request(app).post("/login").send({ email, password}) 
     expect(resultado.statusCode).toBe(200);
