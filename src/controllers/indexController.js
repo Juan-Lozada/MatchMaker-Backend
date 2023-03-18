@@ -27,16 +27,6 @@ const indexController = {
     }
   },
 
-  getUsuarios: async (req, res) => {
-    try {
-      const usuarios = await obtenerUsuarios(usuarios);
-      res.status(200).send(usuarios);
-    } catch (error) {
-      console.log(error);
-      res.status(500).send(error);
-    }
-  },
-
   registroUsuario: async (req, res) => {
     try {
       const usuario = req.body;
@@ -100,6 +90,16 @@ const indexController = {
       res.status(500).send(error);
     }
   },
+
+  getCanchas: async (req, res) => {
+    try {
+      const recintos = await obtenerCanchas();
+      res.status(200).send(recintos);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+},
 
   registroCancha: async (req, res) => {
     try {
