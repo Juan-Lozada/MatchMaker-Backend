@@ -21,6 +21,7 @@ router.post("/registro/cancha", indexController.registroCancha);
 router.get("/recintos/tenant", indexController.getRecintosTenant);
 router.get("/recintos/usuario", indexController.getRecintosUser);
 router.get("/canchas", indexController.getCanchas);
+router.get("usuario/:id", indexController.getUser);
 router.put("/recinto/:id", indexController.editarRecinto);
 router.put("/cancha/:id", indexController.editarCancha);
 

@@ -136,12 +136,30 @@ const actualizarRecinto = async (recinto, id) => {
   await pool.query(consulta, values);
 };
 
+
+
 const obtenerRecintosTenant = async (usuarios_id) => {
   const consulta = "SELECT * FROM recinto WHERE usuarios_id = $1";
   const values = [usuarios_id];
   const { rowCount } = await pool.query(consulta, values);
   if (!rowCount) throw { code: 404, message: "No se encontraron recintos" };
 };
+
+const ObtenerUsuario = async (id) => {
+  try {
+      const consulta ='SELECT * FROM usuario where id = $1;'
+      const values = [id]
+      const {rows} = await pool.query(consulta, values);
+      console.log("lectura base datos usuario")
+      console.log(rows);
+      return rows
+  } catch (err) {
+      console.log("error database usuario");
+      console.log(pool);
+      throw err;
+      
+  }
+}
 
 const obtenerRecintoUser = async (comuna) => {
   const consulta = "SELECT * FROM recinto";
@@ -191,19 +209,6 @@ const registrarReserva = async (cancha) => {
   await pool.query(consulta, values);
 };
 
-const ObtenerUsuario = async (username, password) => {
-  try {
-    const consulta = 'SELECT * FROM usuario where id = $1 and password = $2';
-    const values = [username, password]
-    const { rows } = await pool.query(consulta, values);
-    return rows
-  } catch (err) {
-    console.log("error database usuario");
-    console.log(pool);
-    throw err;
-
-  }
-}
 
 
 module.exports = {

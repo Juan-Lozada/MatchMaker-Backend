@@ -82,6 +82,17 @@ const indexController = {
     }
   },
 
+  getUser: async (req, res) => {
+    try {
+      const {id} = req.body;
+      const usuario = await obtenerUsuario(id);
+      res.status(200).send(usuario);
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error);
+    }
+  },
+
   getRecintosUser: async (req, res) => {
     try {
       const comuna = req.body;
