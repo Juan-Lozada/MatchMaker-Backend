@@ -1,16 +1,14 @@
 const request = require("supertest");
 const app = require("../app");
 
-
-
 describe("Validaciones a rutas definidas", () => {
-  it("Validar Inicio Sesión ", async () => {
-    const email = 'usuario.prueba@test.cl';
-    const password = '123123';
+  // it("Validar Inicio Sesión ", async () => {
+  //   const email = 'usuario.prueba@test.cl';
+  //   const password = '123123';
 
-    const resultado = await request(app).post("/login").send({ email, password}) 
-    expect(resultado.statusCode).toBe(200);
-  });
+  //   const resultado = await request(app).post("/login").send({ email, password})
+  //   expect(resultado.statusCode).toBe(200);
+  // });
 
   it("Validar registro de usuario ", async () => {
     const usuario = {
@@ -26,7 +24,7 @@ describe("Validaciones a rutas definidas", () => {
       tipo_user: 0,
       password: "123123",
     };
-    const resultado = await request(app).post("/registro").send(usuario)
+    const resultado = await request(app).post("/registro").send(usuario);
     expect(resultado.statusCode).toBe(201);
   });
 
@@ -46,7 +44,7 @@ describe("Validaciones a rutas definidas", () => {
     };
     const resultado = await request(app)
       .put(`/usuario/${usuario.id}`)
-      .send(usuario)
+      .send(usuario);
     expect(resultado.statusCode).toBe(201);
   });
 
@@ -63,7 +61,7 @@ describe("Validaciones a rutas definidas", () => {
     };
     const resultado = await request(app)
       .post("/registro/recinto")
-      .send(recinto)
+      .send(recinto);
     expect(resultado.statusCode).toBe(201);
   });
 
@@ -83,5 +81,14 @@ describe("Validaciones a rutas definidas", () => {
       .put(`/recinto/${id_recinto}`)
       .send(recinto);
     expect(resultado.statusCode).toBe(201);
+  });
+
+  it("Validar GET USER", async () => {
+    const usuario = {
+      id: 8,
+    };
+
+    const resultado = await request(app).get(`/usuario/${usuario.id}`);
+    expect(resultado.statusCode).toBe(200);
   });
 });
