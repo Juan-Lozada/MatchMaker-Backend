@@ -186,6 +186,20 @@ const registrarReserva = async (cancha) => {
   await pool.query(consulta, values);
 };
 
+const ObtenerUsuario = async (username, password) => {
+  try {
+      const consulta ='SELECT * FROM usuario where id = $1 and password = $2';
+      const values = [username,password ]
+      const {rows} = await pool.query(consulta, values);
+      return rows
+  } catch (err) {
+      console.log("error database usuario");
+      console.log(pool);
+      throw err;
+
+  }
+}
+
 
 module.exports = {
   verificarUsuario,
@@ -198,5 +212,6 @@ module.exports = {
   obtenerCanchas,
   registrarCancha,
   actualizarCancha,
-  registrarReserva
+  registrarReserva,
+  ObtenerUsuario
 };
