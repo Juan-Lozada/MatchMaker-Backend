@@ -20,7 +20,6 @@ describe("Validaciones a rutas definidas", () => {
       telefono: "123456789",
       direccion: "Los Tulipanes 15",
       comuna: "Villa Alemana",
-      region: "Valparaiso",
       tipo_user: 0,
       password: "123123",
     };
