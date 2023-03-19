@@ -41,7 +41,7 @@ const registrarUsuario = async (usuario) => {
     email,
     telefono,
     direccion,
-    comuna,
+    comuna, 
     region,
     tipo_user,
     password,
