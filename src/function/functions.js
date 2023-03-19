@@ -18,9 +18,12 @@ const pool = new Pool({
 });
 
 const verificarUsuario = async (email, password) => {
-  const values = [email];
+
   const consulta = "SELECT * FROM usuarios WHERE email = $1";
-  const { rows, rowCount } = await pool.query(consulta, values);
+  const values = [email];
+  const { rows } = await pool.query(consulta, values);
+  console.log(rows)
+
   if (rowCount === 0) {
     throw { code: 401, message: "Email o contraseña incorrecta" };
   }
@@ -30,6 +33,8 @@ const verificarUsuario = async (email, password) => {
   const passwordEsCorrecta = bcrypt.compareSync(password, passwordEncriptada);
   if (!passwordEsCorrecta || !rowCount)
     throw { code: 401, message: "Email o contraseña incorrecta" };
+    
+  return rows
 };
 
 
@@ -41,7 +46,7 @@ const registrarUsuario = async (usuario) => {
     email,
     telefono,
     direccion,
-    comuna, 
+    comuna,
     region,
     tipo_user,
     password,
@@ -188,14 +193,14 @@ const registrarReserva = async (cancha) => {
 
 const ObtenerUsuario = async (username, password) => {
   try {
-      const consulta ='SELECT * FROM usuario where id = $1 and password = $2';
-      const values = [username,password ]
-      const {rows} = await pool.query(consulta, values);
-      return rows
+    const consulta = 'SELECT * FROM usuario where id = $1 and password = $2';
+    const values = [username, password]
+    const { rows } = await pool.query(consulta, values);
+    return rows
   } catch (err) {
-      console.log("error database usuario");
-      console.log(pool);
-      throw err;
+    console.log("error database usuario");
+    console.log(pool);
+    throw err;
 
   }
 }

@@ -24,8 +24,6 @@ const indexController = {
       const token = jwt.sign({ email }, "az_AZ", { expiresIn: "300" });
       await verificarUsuario(email, password);
       res.header('Authorization', `Bearer ${token}`).status(200).send({ token });
-      const usuario = await ObtenerUsuario(email, password);
-      res.status(200).send(usuario);
     } catch (e) {
       res.status(404).send(e.message);
     }
