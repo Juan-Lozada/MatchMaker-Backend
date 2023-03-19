@@ -147,6 +147,7 @@ const obtenerRecintosTenant = async (usuarios_id) => {
 
 const ObtenerUsuario = async (id) => {
   try {
+    console.log(id)
       const consulta ='SELECT * FROM usuarios where id = $1;'
       const values = [id]
       const {rows} = await pool.query(consulta, values);

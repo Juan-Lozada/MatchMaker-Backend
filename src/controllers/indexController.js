@@ -84,8 +84,9 @@ const indexController = {
 
   getUser: async (req, res) => {
     try {
-      const {id} = req.body;
+      const {id} = req.params;
       const usuario = await ObtenerUsuario(id);
+      console.log(usuario)
       res.status(200).send(usuario);
     } catch (error) {
       console.log(error);
