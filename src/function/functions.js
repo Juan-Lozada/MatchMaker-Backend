@@ -180,10 +180,10 @@ const obtenerCanchas = async () => {
 };
 
 const registrarCancha = async (cancha) => {
-  let { usuarios_id, recinto_id, deporte, jugadores, fecha, estado } = cancha;
-  const values = [usuarios_id, recinto_id, deporte, jugadores, fecha, estado];
+  let { recinto_id, usuarios_id, deporte, jugadores, fecha, estado, img, nombre, precio, ubicacion } = cancha;
+  const values = [recinto_id, usuarios_id, deporte, jugadores, fecha, estado, img , nombre, precio, ubicacion];
   const consulta =
-    "INSERT INTO cancha values (DEFAULT, $1, $2, $3, $4, $5, $6)";
+    "INSERT INTO cancha values (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
   await pool.query(consulta, values);
 };
 
