@@ -33,7 +33,12 @@ const verificarUsuario = async (email, password) => {
   if (!passwordEsCorrecta || !rowCount)
     throw { code: 401, message: "Email o contraseña incorrecta" };
 
-  return rows;
+    const usuario = {
+      nombre: rows[0].nombre,
+      email: rows[0].email
+    };
+
+  return usuario;
 };
 
 const registrarUsuario = async (usuario) => {
