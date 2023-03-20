@@ -183,7 +183,7 @@ const registrarCancha = async (cancha) => {
   let { recinto_id, usuarios_id, deporte, jugadores, fecha, estado, img, nombre, precio, ubicacion } = cancha;
   const values = [recinto_id, usuarios_id, deporte, jugadores, fecha, estado, img , nombre, precio, ubicacion];
   const consulta =
-    "INSERT INTO cancha values (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
+    "INSERT INTO canchas values (DEFAULT, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10)";
   await pool.query(consulta, values);
 };
 
