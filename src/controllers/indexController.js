@@ -22,8 +22,10 @@ const indexController = {
       console.log('email:', email);
       console.log('password:', password);
       const token = jwt.sign({ email }, "az_AZ", { expiresIn: "300" });
+      console.log('token:', token);
       const usuario = await verificarUsuario(email, password);
-      res.header('Authorization', `Bearer ${token}`).status(200).send({ token, usuario });
+      console.log('usuario:', usuario);
+      res.header('Authorization', `Bearer ${token}`).status(200).send({ usuario, token });
     } catch (e) {
       res.status(404).send(e.message);
     }
@@ -84,7 +86,7 @@ const indexController = {
 
   getUser: async (req, res) => {
     try {
-      const {id} = req.params;
+      const { id } = req.params;
       const usuario = await ObtenerUsuario(id);
       console.log(usuario)
       res.status(200).send(usuario);
@@ -113,7 +115,7 @@ const indexController = {
       console.log(error);
       res.status(500).send(error);
     }
-},
+  },
 
   registroCancha: async (req, res) => {
     try {
