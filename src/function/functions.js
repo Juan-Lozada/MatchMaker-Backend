@@ -20,7 +20,7 @@ const pool = new Pool({
 const verificarUsuario = async (email, password) => {
   const consulta = "SELECT * FROM usuarios WHERE email = $1";
   const values = [email];
-  const { rows } = await pool.query(consulta, values);
+  const { rows, rowCount } = await pool.query(consulta, values);
   console.log(rows);
 
   if (rowCount === 0) {
