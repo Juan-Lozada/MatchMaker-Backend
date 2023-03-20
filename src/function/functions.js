@@ -29,14 +29,17 @@ const verificarUsuario = async (email, password) => {
 
   const passwordEncriptada = rows[0].password;
 
+  console.log('passwordEncriptada:', passwordEncriptada);
+  console.log('password:', password);
+
   const passwordEsCorrecta = bcrypt.compareSync(password, passwordEncriptada);
   if (!passwordEsCorrecta || !rowCount)
     throw { code: 401, message: "Email o contraseña incorrecta" };
 
-    const usuario = {
-      nombre: rows[0].nombre,
-      email: rows[0].email
-    };
+  const usuario = {
+    nombre: rows[0].nombre,
+    email: rows[0].email
+  };
 
   return usuario;
 };
