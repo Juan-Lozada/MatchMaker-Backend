@@ -40,7 +40,7 @@ const verificarUsuario = async (email, password) => {
     nombre: rows[0].nombre,
     email: rows[0].email,
     id: rows[0].id,
-    tipo_usuario: rows[0].tipo_usuario
+    tipo_usuario: rows[0].tipo_user
   };
 
   return usuario;
